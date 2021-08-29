@@ -1,0 +1,14 @@
+{
+    "name": "danger_ore_extra",
+    "version": "0.0.1",
+    "title": "Danger Ore Extra",
+    "author": "grilledham",
+    "contact": "",
+    "homepage": "",
+    "factorio_version": "1.1",
+    "dependencies": [
+        "base >= 1.1.0",
+        "deadlock-beltboxes-loaders"
+    ],
+    "description": "Extra prototypes for use in danger ores."
+}
