@@ -186,7 +186,8 @@ assembling_machine4.crafting_speed = 2
 assembling_machine4.energy_usage = "500kW"
 assembling_machine4.module_specification = {module_slots = 8}
 assembling_machine4.animation.layers[1].filename = "__danger_ore_extra__/graphics/assembling-machine-4.png"
-assembling_machine4.animation.layers[1].hr_version.filename = "__danger_ore_extra__/graphics/hr-assembling-machine-4.png"
+assembling_machine4.animation.layers[1].hr_version.filename =
+    "__danger_ore_extra__/graphics/hr-assembling-machine-4.png"
 
 local assembling_machine4_recipe = {
     type = "recipe",
@@ -257,7 +258,10 @@ local oil_processing2 = {
     icon_mipmaps = 4,
     icon = "__base__/graphics/technology/oil-gathering.png",
     prerequisites = {"oil-processing", "production-science-pack"},
-    effects = {{type = "unlock-recipe", recipe = "chemical-plant-2"}, {type = "unlock-recipe", recipe = "oil-refinery-2"}},
+    effects = {
+        {type = "unlock-recipe", recipe = "chemical-plant-2"},
+        {type = "unlock-recipe", recipe = "oil-refinery-2"}
+    },
     unit = {
         count = 300,
         ingredients = {
@@ -305,3 +309,80 @@ local oil_refinery2_recipe = {
 }
 
 data:extend{oil_refinery2_item, oil_refinery2, oil_refinery2_recipe}
+
+local steam_engine2_tint = {r = 5 / 255, g = 164 / 255, b = 208 / 255, a = 0.8}
+
+local steam_engine2_item = table.deepcopy(data.raw["item"]["steam-engine"])
+steam_engine2_item.name = "steam-engine-2"
+steam_engine2_item.icons = {{icon = steam_engine2_item.icon, tint = steam_engine2_tint}}
+steam_engine2_item.place_result = "steam-engine-2"
+
+local steam_engine2 = table.deepcopy(data.raw["generator"]["steam-engine"])
+steam_engine2.name = "steam-engine-2"
+steam_engine2.minable.result = "steam-engine-2"
+steam_engine2.maximum_temperature = 315
+steam_engine2.horizontal_animation.layers[1].filename = "__danger_ore_extra__/graphics/steam-engine-H-2.png"
+steam_engine2.horizontal_animation.layers[1].hr_version.filename =
+    "__danger_ore_extra__/graphics/hr-steam-engine-H-2.png"
+steam_engine2.vertical_animation.layers[1].filename = "__danger_ore_extra__/graphics/steam-engine-V-2.png"
+steam_engine2.vertical_animation.layers[1].hr_version.filename = "__danger_ore_extra__/graphics/hr-steam-engine-V-2.png"
+
+local steam_engine2_recipe = {
+    type = "recipe",
+    name = "steam-engine-2",
+    ingredients = {{"steam-engine", 2}, {"engine-unit", 5}, {"steel-plate", 10}},
+    result = "steam-engine-2",
+    enabled = false,
+    energy_required = 0.5
+}
+
+local steam_engine2_tech = {
+    type = "technology",
+    name = "steam-engine-2",
+    icon_size = 64,
+    icon_mipmaps = 4,
+    icon = "__base__/graphics/icons/steam-engine.png",
+    prerequisites = {"chemical-science-pack"},
+    effects = {{type = "unlock-recipe", recipe = "steam-engine-2"}, {type = "unlock-recipe", recipe = "boiler-2"}},
+    unit = {
+        count = 225,
+        ingredients = {{"automation-science-pack", 1}, {"logistic-science-pack", 1}, {"chemical-science-pack", 1}},
+        time = 30
+    },
+    order = "d-a"
+}
+
+data:extend{steam_engine2_item, steam_engine2, steam_engine2_recipe, steam_engine2_tech}
+
+local boiler2_tint = {r = 5 / 255, g = 164 / 255, b = 208 / 255, a = 0.8}
+
+local boiler2_item = table.deepcopy(data.raw["item"]["boiler"])
+boiler2_item.name = "boiler-2"
+boiler2_item.icons = {{icon = boiler2_item.icon, tint = boiler2_tint}}
+boiler2_item.place_result = "boiler-2"
+
+local boiler2 = table.deepcopy(data.raw["boiler"]["boiler"])
+boiler2.name = "boiler-2"
+boiler2.minable.result = "boiler-2"
+boiler2.target_temperature = 315
+boiler2.energy_consumption = "3.6MW"
+boiler2.energy_source.emissions_per_minute = 60
+boiler2.structure.north.layers[1].filename = "__danger_ore_extra__/graphics/boiler-N-idle-2.png"
+boiler2.structure.north.layers[1].hr_version.filename = "__danger_ore_extra__/graphics/hr-boiler-N-idle-2.png"
+boiler2.structure.east.layers[1].filename = "__danger_ore_extra__/graphics/boiler-E-idle-2.png"
+boiler2.structure.east.layers[1].hr_version.filename = "__danger_ore_extra__/graphics/hr-boiler-E-idle-2.png"
+boiler2.structure.south.layers[1].filename = "__danger_ore_extra__/graphics/boiler-S-idle-2.png"
+boiler2.structure.south.layers[1].hr_version.filename = "__danger_ore_extra__/graphics/hr-boiler-S-idle-2.png"
+boiler2.structure.west.layers[1].filename = "__danger_ore_extra__/graphics/boiler-W-idle-2.png"
+boiler2.structure.west.layers[1].hr_version.filename = "__danger_ore_extra__/graphics/hr-boiler-W-idle-2.png"
+
+local boiler2_recipe = {
+    type = "recipe",
+    name = "boiler-2",
+    ingredients = {{"boiler", 2}, {"steel-furnace", 2}},
+    result = "boiler-2",
+    enabled = false,
+    energy_required = 0.5
+}
+
+data:extend{boiler2_item, boiler2, boiler2_recipe}
