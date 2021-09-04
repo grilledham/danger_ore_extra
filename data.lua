@@ -13,6 +13,7 @@ mining_drill2.energy_usage = "180kW"
 mining_drill2.energy_source.emissions_per_minute = 20
 mining_drill2.resource_searching_radius = 3.49
 mining_drill2.module_specification = {module_slots = 4}
+mining_drill2.next_upgrade = "electric-mining-drill-3"
 
 mining_drill2.graphics_set.animation.north.layers[1].tint = mining_drill2_tint
 mining_drill2.graphics_set.animation.north.layers[1].hr_version.tint = mining_drill2_tint
@@ -137,6 +138,7 @@ furnace2.name = "electric-furnace-2"
 furnace2.minable = {mining_time = 0.2, result = "electric-furnace-2"}
 furnace2.module_specification = {module_slots = 4, module_info_icon_shift = {0, 0.8}}
 furnace2.crafting_speed = 4
+furnace2.fast_replaceable_group = "electric-furnace"
 furnace2.animation.layers[1].filename = "__danger_ore_extra__/graphics/electric-furnace-base-2.png"
 furnace2.animation.layers[1].hr_version.filename = "__danger_ore_extra__/graphics/hr-electric-furnace-2.png"
 
@@ -233,6 +235,7 @@ chemical_plant2.minable = {mining_time = 0.2, result = "chemical-plant-2"}
 chemical_plant2.crafting_speed = 2
 chemical_plant2.energy_usage = "420kW"
 chemical_plant2.module_specification = {module_slots = 6}
+chemical_plant2.fast_replaceable_group = "chemical-plant"
 chemical_plant2.animation.north.layers[1].filename = "__danger_ore_extra__/graphics/chemical-plant-2.png"
 chemical_plant2.animation.north.layers[1].hr_version.filename = "__danger_ore_extra__/graphics/hr-chemical-plant-2.png"
 chemical_plant2.animation.east.layers[1].filename = "__danger_ore_extra__/graphics/chemical-plant-2.png"
@@ -290,6 +293,7 @@ oil_refinery2.minable = {mining_time = 0.2, result = "oil-refinery-2"}
 oil_refinery2.crafting_speed = 2
 oil_refinery2.energy_usage = "840kW"
 oil_refinery2.module_specification = {module_slots = 6}
+oil_refinery2.fast_replaceable_group = "oil-refinery"
 oil_refinery2.animation.north.layers[1].filename = "__danger_ore_extra__/graphics/oil-refinery-2.png"
 oil_refinery2.animation.north.layers[1].hr_version.filename = "__danger_ore_extra__/graphics/hr-oil-refinery-2.png"
 oil_refinery2.animation.east.layers[1].filename = "__danger_ore_extra__/graphics/oil-refinery-2.png"
@@ -367,6 +371,7 @@ boiler2.minable.result = "boiler-2"
 boiler2.target_temperature = 315
 boiler2.energy_consumption = "3.6MW"
 boiler2.energy_source.emissions_per_minute = 60
+boiler2.fast_replaceable_group = "boiler"
 boiler2.structure.north.layers[1].filename = "__danger_ore_extra__/graphics/boiler-N-idle-2.png"
 boiler2.structure.north.layers[1].hr_version.filename = "__danger_ore_extra__/graphics/hr-boiler-N-idle-2.png"
 boiler2.structure.east.layers[1].filename = "__danger_ore_extra__/graphics/boiler-E-idle-2.png"
@@ -386,3 +391,129 @@ local boiler2_recipe = {
 }
 
 data:extend{boiler2_item, boiler2, boiler2_recipe}
+
+local steam_turbine2_tint = {r = 5 / 255, g = 164 / 255, b = 208 / 255, a = 0.8}
+
+local steam_turbine2_item = table.deepcopy(data.raw["item"]["steam-turbine"])
+steam_turbine2_item.name = "steam-turbine-2"
+steam_turbine2_item.icons = {{icon = steam_turbine2_item.icon, tint = steam_turbine2_tint}}
+steam_turbine2_item.place_result = "steam-turbine-2"
+
+local steam_turbine2 = table.deepcopy(data.raw["generator"]["steam-turbine"])
+steam_turbine2.name = "steam-turbine-2"
+steam_turbine2.minable.result = "steam-turbine-2"
+steam_turbine2.maximum_temperature = 985
+steam_turbine2.horizontal_animation.layers[1].filename = "__danger_ore_extra__/graphics/steam-turbine-H-2.png"
+steam_turbine2.horizontal_animation.layers[1].hr_version.filename =
+    "__danger_ore_extra__/graphics/hr-steam-turbine-H-2.png"
+steam_turbine2.vertical_animation.layers[1].filename = "__danger_ore_extra__/graphics/steam-turbine-V-2.png"
+steam_turbine2.vertical_animation.layers[1].hr_version.filename =
+    "__danger_ore_extra__/graphics/hr-steam-turbine-V-2.png"
+
+local steam_turbine2_recipe = {
+    type = "recipe",
+    name = "steam-turbine-2",
+    ingredients = {{"steam-turbine", 2}, {"low-density-structure", 10}, {"processing-unit", 10}},
+    result = "steam-turbine-2",
+    enabled = false,
+    energy_required = 3
+}
+
+local nuclear_power2_tech = {
+    type = "technology",
+    name = "nuclear-power-2",
+    icon_size = 256,
+    icon_mipmaps = 4,
+    icon = "__base__/graphics/technology/nuclear-power.png",
+    prerequisites = {"nuclear-power", "production-science-pack"},
+    effects = {
+        {type = "unlock-recipe", recipe = "steam-turbine-2"},
+        {type = "unlock-recipe", recipe = "nuclear-reactor-2"},
+        {type = "unlock-recipe", recipe = "heat-exchanger-2"}
+    },
+    unit = {
+        count = 400,
+        ingredients = {
+            {"automation-science-pack", 1},
+            {"logistic-science-pack", 1},
+            {"chemical-science-pack", 1},
+            {"production-science-pack", 1}
+        },
+        time = 30
+    },
+    order = "d-a"
+}
+
+data:extend{steam_turbine2_item, steam_turbine2, steam_turbine2_recipe, nuclear_power2_tech}
+
+local nuclear_reactor2_tint = {r = 5 / 255, g = 164 / 255, b = 208 / 255, a = 0.8}
+
+local nuclear_reactor2_item = table.deepcopy(data.raw["item"]["nuclear-reactor"])
+nuclear_reactor2_item.name = "nuclear-reactor-2"
+nuclear_reactor2_item.icons = {{icon = nuclear_reactor2_item.icon, tint = nuclear_reactor2_tint}}
+nuclear_reactor2_item.place_result = "nuclear-reactor-2"
+
+local nuclear_reactor2 = table.deepcopy(data.raw["reactor"]["nuclear-reactor"])
+nuclear_reactor2.name = "nuclear-reactor-2"
+nuclear_reactor2.minable.result = "nuclear-reactor-2"
+nuclear_reactor2.maximum_temperature = 985
+nuclear_reactor2.fast_replaceable_group = "nuclear-reactor"
+nuclear_reactor2.picture.layers[1].filename = "__danger_ore_extra__/graphics/reactor-2.png"
+nuclear_reactor2.picture.layers[1].hr_version.filename = "__danger_ore_extra__/graphics/hr-reactor-2.png"
+nuclear_reactor2.consumption = "80MW"
+nuclear_reactor2.heat_buffer.max_temperature = 2000
+nuclear_reactor2.heat_buffer.specific_heat = "20MJ"
+nuclear_reactor2.heat_buffer.max_transfer = "20GW"
+
+local nuclear_reactor2_recipe = {
+    type = "recipe",
+    name = "nuclear-reactor-2",
+    ingredients = {
+        {"nuclear-reactor", 4},
+        {"low-density-structure", 100},
+        {"processing-unit", 100},
+        {"refined-concrete", 1000}
+    },
+    result = "nuclear-reactor-2",
+    enabled = false,
+    energy_required = 8
+}
+
+data:extend{nuclear_reactor2_item, nuclear_reactor2, nuclear_reactor2_recipe}
+
+local heat_exchanger2_tint = {r = 5 / 255, g = 164 / 255, b = 208 / 255, a = 0.8}
+
+local heat_exchanger2_item = table.deepcopy(data.raw["item"]["heat-exchanger"])
+heat_exchanger2_item.name = "heat-exchanger-2"
+heat_exchanger2_item.icons = {{icon = heat_exchanger2_item.icon, tint = heat_exchanger2_tint}}
+heat_exchanger2_item.place_result = "heat-exchanger-2"
+
+local heat_exchanger2 = table.deepcopy(data.raw["boiler"]["heat-exchanger"])
+heat_exchanger2.name = "heat-exchanger-2"
+heat_exchanger2.minable.result = "heat-exchanger-2"
+heat_exchanger2.fast_replaceable_group = "heat-exchanger"
+heat_exchanger2.target_temperature = 1000
+heat_exchanger2.energy_consumption = "20MW"
+heat_exchanger2.energy_source.max_temperature = 2000
+heat_exchanger2.energy_source.specific_heat = "2MJ"
+heat_exchanger2.energy_source.max_transfer = "4GW"
+heat_exchanger2.energy_source.min_working_temperature = 1000
+heat_exchanger2.structure.north.layers[1].filename = "__danger_ore_extra__/graphics/heatex-N-idle-2.png"
+heat_exchanger2.structure.north.layers[1].hr_version.filename = "__danger_ore_extra__/graphics/hr-heatex-N-idle-2.png"
+heat_exchanger2.structure.east.layers[1].filename = "__danger_ore_extra__/graphics/heatex-E-idle-2.png"
+heat_exchanger2.structure.east.layers[1].hr_version.filename = "__danger_ore_extra__/graphics/hr-heatex-E-idle-2.png"
+heat_exchanger2.structure.south.layers[1].filename = "__danger_ore_extra__/graphics/heatex-S-idle-2.png"
+heat_exchanger2.structure.south.layers[1].hr_version.filename = "__danger_ore_extra__/graphics/hr-heatex-S-idle-2.png"
+heat_exchanger2.structure.west.layers[1].filename = "__danger_ore_extra__/graphics/heatex-W-idle-2.png"
+heat_exchanger2.structure.west.layers[1].hr_version.filename = "__danger_ore_extra__/graphics/hr-heatex-W-idle-2.png"
+
+local heat_exchanger2_recipe = {
+    type = "recipe",
+    name = "heat-exchanger-2",
+    ingredients = {{"heat-exchanger", 2}, {"low-density-structure", 5}, {"steel-plate", 5}},
+    result = "heat-exchanger-2",
+    enabled = false,
+    energy_required = 3
+}
+
+data:extend{heat_exchanger2_item, heat_exchanger2, heat_exchanger2_recipe}
