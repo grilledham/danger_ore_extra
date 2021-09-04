@@ -57,3 +57,54 @@ data.raw["splitter"]["express-splitter"].speed = 0.125
 data.raw["loader"]["express-loader"].speed = 0.125
 data.raw["loader-1x1"]["express-transport-belt-loader"].speed = 0.125
 data.raw["furnace"]["express-transport-belt-beltbox"].crafting_speed = 0.125 * 32
+
+local heat_pipe = data.raw["heat-pipe"]["heat-pipe"]
+heat_pipe.heat_buffer.max_temperature = 2000
+
+data.raw["technology"]["nuclear-power"].unit.count = 400
+
+local robot_energy_multipler = 10
+
+local construction_robot = data.raw["construction-robot"]["construction-robot"]
+construction_robot.max_energy = (robot_energy_multipler * 1.5) .. "MJ"
+construction_robot.energy_per_tick = (robot_energy_multipler * 0.05) .. "kJ"
+construction_robot.energy_per_move = (robot_energy_multipler * 5) .. "kJ"
+
+local logistic_robot = data.raw["logistic-robot"]["logistic-robot"]
+logistic_robot.max_energy = (robot_energy_multipler * 1.5) .. "MJ"
+logistic_robot.energy_per_tick = (robot_energy_multipler * 0.05) .. "kJ"
+logistic_robot.energy_per_move = (robot_energy_multipler * 5) .. "kJ"
+
+local roboport = data.raw["roboport"]["roboport"]
+roboport.energy_source.input_flow_limit = (robot_energy_multipler * 5) .. "MW"
+roboport.energy_source.buffer_capacity = (robot_energy_multipler * 100) .. "MJ"
+roboport.recharge_minimum = (robot_energy_multipler * 40) .. "MJ"
+-- roboport.energy_usage = (robot_energy_multipler * 50) .. "kJ"
+roboport.charging_energy = (robot_energy_multipler * 1000) .. "kW"
+
+local roboport_equipment = data.raw["roboport-equipment"]["personal-roboport-equipment"]
+roboport_equipment.energy_source.buffer_capacity = (robot_energy_multipler * 35) .. "MJ"
+roboport_equipment.energy_source.input_flow_limit = (robot_energy_multipler * 3500) .. "KW"
+roboport_equipment.charging_energy = (robot_energy_multipler * 1000) .. "kW"
+
+local roboport_equipment2 = data.raw["roboport-equipment"]["personal-roboport-mk2-equipment"]
+roboport_equipment2.energy_source.buffer_capacity = (robot_energy_multipler * 35) .. "MJ"
+roboport_equipment2.energy_source.input_flow_limit = (robot_energy_multipler * 3500) .. "KW"
+roboport_equipment2.charging_energy = (robot_energy_multipler * 1000) .. "kW"
+
+data.raw["mining-drill"]["electric-mining-drill"].next_upgrade = "electric-mining-drill-2"
+data.raw["assembling-machine"]["assembling-machine-3"].next_upgrade = "assembling-machine-4"
+data.raw["assembling-machine"]["oil-refinery"].next_upgrade = "oil-refinery-2"
+data.raw["assembling-machine"]["oil-refinery"].fast_replaceable_group = "oil-refinery"
+data.raw["assembling-machine"]["chemical-plant"].next_upgrade = "chemical-plant-2"
+data.raw["assembling-machine"]["chemical-plant"].fast_replaceable_group = "chemical-plant"
+data.raw["boiler"]["boiler"].next_upgrade = "boiler-2"
+data.raw["boiler"]["boiler"].fast_replaceable_group = "boiler"
+data.raw["generator"]["steam-engine"].next_upgrade = "steam-engine-2"
+data.raw["boiler"]["heat-exchanger"].next_upgrade = "heat-exchanger-2"
+data.raw["boiler"]["heat-exchanger"].fast_replaceable_group = "heat-exchanger"
+data.raw["generator"]["steam-turbine"].next_upgrade = "steam-turbine-2"
+data.raw["reactor"]["nuclear-reactor"].next_upgrade = "nuclear-reactor-2"
+data.raw["reactor"]["nuclear-reactor"].fast_replaceable_group = "nuclear-reactor"
+data.raw["furnace"]["electric-furnace"].next_upgrade = "electric-furnace-2"
+data.raw["furnace"]["electric-furnace"].fast_replaceable_group = "electric-furnace"
