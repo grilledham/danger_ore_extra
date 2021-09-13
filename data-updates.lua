@@ -108,3 +108,18 @@ data.raw["reactor"]["nuclear-reactor"].next_upgrade = "nuclear-reactor-2"
 data.raw["reactor"]["nuclear-reactor"].fast_replaceable_group = "nuclear-reactor"
 data.raw["furnace"]["electric-furnace"].next_upgrade = "electric-furnace-2"
 data.raw["furnace"]["electric-furnace"].fast_replaceable_group = "electric-furnace"
+
+for level = 1, 7 do
+    local tech = data.raw["technology"]["inserter-capacity-bonus-" .. level]
+    if not tech then
+        goto continue
+    end
+
+    for key, modifier in pairs(tech.effects or {}) do
+        if modifier.type == "inserter-stack-size-bonus" then
+            tech.effects[key] = nil
+        end
+    end
+
+    ::continue::
+end

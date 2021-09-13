@@ -97,7 +97,7 @@ mining_drill3.wet_mining_graphics_set.animation.west.layers[1].hr_version.tint =
 local mining_drill3_recipe = {
     type = "recipe",
     name = "electric-mining-drill-3",
-    ingredients = {{"electric-mining-drill-2", 2}, {"engine-unit", 5}, {"processing-unit", 3}},
+    ingredients = {{"electric-mining-drill-2", 2}, {"engine-unit", 10}, {"processing-unit", 5}},
     result = "electric-mining-drill-3",
     enabled = false,
     energy_required = 2
@@ -145,7 +145,7 @@ furnace2.animation.layers[1].hr_version.filename = "__danger_ore_extra__/graphic
 local furnace2_recipe = {
     type = "recipe",
     name = "electric-furnace-2",
-    ingredients = {{"electric-furnace", 1}, {"engine-unit", 5}, {"processing-unit", 3}},
+    ingredients = {{"electric-furnace", 2}, {"engine-unit", 10}, {"refined-concrete", 100}},
     result = "electric-furnace-2",
     enabled = false,
     energy_required = 5
@@ -194,7 +194,7 @@ assembling_machine4.animation.layers[1].hr_version.filename =
 local assembling_machine4_recipe = {
     type = "recipe",
     name = "assembling-machine-4",
-    ingredients = {{"assembling-machine-3", 2}, {"speed-module-2", 4}},
+    ingredients = {{"assembling-machine-3", 4}, {"speed-module-2", 4}},
     result = "assembling-machine-4",
     enabled = false
 }
@@ -208,12 +208,13 @@ local assembling_machine4_tech = {
     effects = {{type = "unlock-recipe", recipe = "assembling-machine-4"}},
     prerequisites = {"speed-module-2", "automation-3"},
     unit = {
-        count = 300,
+        count = 600,
         ingredients = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
             {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            {"production-science-pack", 1},
+            {"utility-science-pack", 1}
         },
         time = 60
     },
@@ -248,7 +249,7 @@ chemical_plant2.animation.west.layers[1].hr_version.filename = "__danger_ore_ext
 local chemical_plant2_recipe = {
     type = "recipe",
     name = "chemical-plant-2",
-    ingredients = {{"chemical-plant", 2}, {"engine-unit", 5}, {"processing-unit", 3}},
+    ingredients = {{"chemical-plant", 2}, {"engine-unit", 10}, {"processing-unit", 5}, {"pipe", 50}},
     result = "chemical-plant-2",
     enabled = false,
     energy_required = 5
@@ -266,7 +267,7 @@ local oil_processing2 = {
         {type = "unlock-recipe", recipe = "oil-refinery-2"}
     },
     unit = {
-        count = 300,
+        count = 400,
         ingredients = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -306,7 +307,7 @@ oil_refinery2.animation.west.layers[1].hr_version.filename = "__danger_ore_extra
 local oil_refinery2_recipe = {
     type = "recipe",
     name = "oil-refinery-2",
-    ingredients = {{"oil-refinery", 2}, {"engine-unit", 5}, {"processing-unit", 3}},
+    ingredients = {{"oil-refinery", 2}, {"engine-unit", 10}, {"processing-unit", 5}, {"pipe-to-ground", 10}, {"refined-concrete", 100}},
     result = "oil-refinery-2",
     enabled = false,
     energy_required = 8
@@ -334,7 +335,7 @@ steam_engine2.vertical_animation.layers[1].hr_version.filename = "__danger_ore_e
 local steam_engine2_recipe = {
     type = "recipe",
     name = "steam-engine-2",
-    ingredients = {{"steam-engine", 2}, {"engine-unit", 5}, {"steel-plate", 10}},
+    ingredients = {{"steam-engine", 2}, {"engine-unit", 5}, {"steel-plate", 10}, {"pipe", 25}},
     result = "steam-engine-2",
     enabled = false,
     energy_required = 0.5
@@ -349,7 +350,7 @@ local steam_engine2_tech = {
     prerequisites = {"chemical-science-pack"},
     effects = {{type = "unlock-recipe", recipe = "steam-engine-2"}, {type = "unlock-recipe", recipe = "boiler-2"}},
     unit = {
-        count = 225,
+        count = 350,
         ingredients = {{"automation-science-pack", 1}, {"logistic-science-pack", 1}, {"chemical-science-pack", 1}},
         time = 30
     },
@@ -384,7 +385,7 @@ boiler2.structure.west.layers[1].hr_version.filename = "__danger_ore_extra__/gra
 local boiler2_recipe = {
     type = "recipe",
     name = "boiler-2",
-    ingredients = {{"boiler", 2}, {"steel-furnace", 2}},
+    ingredients = {{"boiler", 3}, {"steel-furnace", 3}},
     result = "boiler-2",
     enabled = false,
     energy_required = 0.5
@@ -413,7 +414,7 @@ steam_turbine2.vertical_animation.layers[1].hr_version.filename =
 local steam_turbine2_recipe = {
     type = "recipe",
     name = "steam-turbine-2",
-    ingredients = {{"steam-turbine", 2}, {"low-density-structure", 10}, {"processing-unit", 10}},
+    ingredients = {{"steam-turbine", 2}, {"low-density-structure", 25}, {"processing-unit", 25}, {"heat-pipe", 15}},
     result = "steam-turbine-2",
     enabled = false,
     energy_required = 3
@@ -437,7 +438,8 @@ local nuclear_power2_tech = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
             {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            {"production-science-pack", 1},
+            {"utility-science-pack", 1}
         },
         time = 30
     },
@@ -472,7 +474,8 @@ local nuclear_reactor2_recipe = {
         {"nuclear-reactor", 4},
         {"low-density-structure", 100},
         {"processing-unit", 100},
-        {"refined-concrete", 1000}
+        {"refined-concrete", 1000},
+        {"heat-pipe", 100}
     },
     result = "nuclear-reactor-2",
     enabled = false,
@@ -510,7 +513,7 @@ heat_exchanger2.structure.west.layers[1].hr_version.filename = "__danger_ore_ext
 local heat_exchanger2_recipe = {
     type = "recipe",
     name = "heat-exchanger-2",
-    ingredients = {{"heat-exchanger", 2}, {"low-density-structure", 5}, {"steel-plate", 5}},
+    ingredients = {{"heat-exchanger", 2}, {"low-density-structure", 10}, {"heat-pipe", 10}},
     result = "heat-exchanger-2",
     enabled = false,
     energy_required = 3
