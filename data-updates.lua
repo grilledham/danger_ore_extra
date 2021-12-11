@@ -63,7 +63,7 @@ heat_pipe.heat_buffer.max_temperature = 2000
 
 data.raw["technology"]["nuclear-power"].unit.count = 400
 
-local robot_energy_multipler = 10
+local robot_energy_multipler = settings.startup["danger_ore_extra:robot_energy_multipler"].value
 
 local construction_robot = data.raw["construction-robot"]["construction-robot"]
 construction_robot.max_energy = (robot_energy_multipler * 1.5) .. "MJ"
