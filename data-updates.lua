@@ -1,5 +1,10 @@
 local deadlock = _G.deadlock
 
+local ore_stack_size = settings.startup["danger_ore_extra:ore_stack_size"].value
+for _, resource_name in pairs({"iron-ore", "copper-ore", "coal", "stone", "uranium-ore"}) do
+    data.raw["item"][resource_name].stack_size = ore_stack_size
+end
+
 if deadlock then
     deadlock.add_stack("pipe", nil, "deadlock-stacking-1", 64)
     deadlock.add_stack("engine-unit", nil, "deadlock-stacking-2", 64)
