@@ -31,7 +31,8 @@ if deadlock then
     deadlock.add_stack("space-science-pack", nil, "deadlock-stacking-3", 64, "tool")
 
     for _, item in pairs({"iron-gear-wheel", "copper-cable", "electronic-circuit"}) do
-        deadlock.add_stack(item, string.format("__deadlock-beltboxes-loaders__/graphics/icons/square/stacked-%s.png", item),
+        deadlock.add_stack(item,
+            string.format("__deadlock-beltboxes-loaders__/graphics/icons/square/stacked-%s.png", item),
             string.format("deadlock-stacking-%d", 1), 32)
     end
 
@@ -70,10 +71,22 @@ data.raw["technology"]["nuclear-power"].unit.count = 400
 
 local robot_energy_multipler = settings.startup["danger_ore_extra:robot_energy_multipler"].value
 
-local construction_robot = data.raw["construction-robot"]["construction-robot"]
-construction_robot.max_energy = (robot_energy_multipler * 1.5) .. "MJ"
-construction_robot.energy_per_tick = (robot_energy_multipler * 0.05) .. "kJ"
-construction_robot.energy_per_move = (robot_energy_multipler * 5) .. "kJ"
+if settings.startup['danger_ore_extra:robot_energy_multipler_include_construction_robots'].value then
+    local construction_robot = data.raw["construction-robot"]["construction-robot"]
+    construction_robot.max_energy = (robot_energy_multipler * 1.5) .. "MJ"
+    construction_robot.energy_per_tick = (robot_energy_multipler * 0.05) .. "kJ"
+    construction_robot.energy_per_move = (robot_energy_multipler * 5) .. "kJ"
+
+    local roboport_equipment = data.raw["roboport-equipment"]["personal-roboport-equipment"]
+    roboport_equipment.energy_source.buffer_capacity = (robot_energy_multipler * 35) .. "MJ"
+    roboport_equipment.energy_source.input_flow_limit = (robot_energy_multipler * 3500) .. "KW"
+    roboport_equipment.charging_energy = (robot_energy_multipler * 1000) .. "kW"
+
+    local roboport_equipment2 = data.raw["roboport-equipment"]["personal-roboport-mk2-equipment"]
+    roboport_equipment2.energy_source.buffer_capacity = (robot_energy_multipler * 35) .. "MJ"
+    roboport_equipment2.energy_source.input_flow_limit = (robot_energy_multipler * 3500) .. "KW"
+    roboport_equipment2.charging_energy = (robot_energy_multipler * 1000) .. "kW"
+end
 
 local logistic_robot = data.raw["logistic-robot"]["logistic-robot"]
 logistic_robot.max_energy = (robot_energy_multipler * 1.5) .. "MJ"
@@ -86,16 +99,6 @@ roboport.energy_source.buffer_capacity = (robot_energy_multipler * 100) .. "MJ"
 roboport.recharge_minimum = (robot_energy_multipler * 40) .. "MJ"
 -- roboport.energy_usage = (robot_energy_multipler * 50) .. "kJ"
 roboport.charging_energy = (robot_energy_multipler * 1000) .. "kW"
-
-local roboport_equipment = data.raw["roboport-equipment"]["personal-roboport-equipment"]
-roboport_equipment.energy_source.buffer_capacity = (robot_energy_multipler * 35) .. "MJ"
-roboport_equipment.energy_source.input_flow_limit = (robot_energy_multipler * 3500) .. "KW"
-roboport_equipment.charging_energy = (robot_energy_multipler * 1000) .. "kW"
-
-local roboport_equipment2 = data.raw["roboport-equipment"]["personal-roboport-mk2-equipment"]
-roboport_equipment2.energy_source.buffer_capacity = (robot_energy_multipler * 35) .. "MJ"
-roboport_equipment2.energy_source.input_flow_limit = (robot_energy_multipler * 3500) .. "KW"
-roboport_equipment2.charging_energy = (robot_energy_multipler * 1000) .. "kW"
 
 data.raw["mining-drill"]["electric-mining-drill"].next_upgrade = "electric-mining-drill-2"
 data.raw["assembling-machine"]["assembling-machine-3"].next_upgrade = "assembling-machine-4"
