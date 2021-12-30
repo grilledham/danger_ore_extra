@@ -23,5 +23,12 @@ data:extend{
 		minimum_value = 1,
 		maximum_value = 10000,
 		order = 'c'
+	},
+	{
+		name = 'danger_ore_extra:cheaper_electric_drills',
+		type = 'bool-setting',
+		setting_type = 'startup',
+		default_value = false,
+		order = 'd'
 	}
 }
