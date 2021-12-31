@@ -126,6 +126,30 @@ local mining_drill3_tech = {
 
 data:extend{mining_drill3_item, mining_drill3, mining_drill3_recipe, mining_drill3_tech}
 
+if settings.startup['danger_ore_extra:cheaper_electric_drills'].value then
+    mining_drill2_recipe.ingredients = {
+        {"electric-mining-drill", 1},
+        {"iron-gear-wheel", 25},
+        {"electronic-circuit", 7},
+        {"steel-plate", 10}
+    }
+    mining_drill2_tech.unit = {count = 50, ingredients = {{"automation-science-pack", 1}}, time = 30}
+    mining_drill2_tech.prerequisites = {"steel-processing"}
+
+    mining_drill3_tech.unit = {
+        count = 100,
+        ingredients = {{"automation-science-pack", 1}, {"logistic-science-pack", 1}},
+        time = 60
+    }
+    mining_drill3_tech.prerequisites = {"electric-mining-drill-2", "advanced-electronics", "engine"}
+    mining_drill3_recipe.ingredients = {
+        {"electric-mining-drill-2", 1},
+        {"engine-unit", 2},
+        {"advanced-circuit", 5},
+        {"steel-plate", 20}
+    }
+end
+
 local furnace2_tint = {r = 5 / 255, g = 164 / 255, b = 208 / 255, a = 0.8}
 
 local furnace2_item = table.deepcopy(data.raw["item"]["electric-furnace"])
@@ -307,7 +331,13 @@ oil_refinery2.animation.west.layers[1].hr_version.filename = "__danger_ore_extra
 local oil_refinery2_recipe = {
     type = "recipe",
     name = "oil-refinery-2",
-    ingredients = {{"oil-refinery", 2}, {"engine-unit", 10}, {"processing-unit", 5}, {"pipe-to-ground", 10}, {"refined-concrete", 100}},
+    ingredients = {
+        {"oil-refinery", 2},
+        {"engine-unit", 10},
+        {"processing-unit", 5},
+        {"pipe-to-ground", 10},
+        {"refined-concrete", 100}
+    },
     result = "oil-refinery-2",
     enabled = false,
     energy_required = 8
