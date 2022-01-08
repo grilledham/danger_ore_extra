@@ -550,3 +550,57 @@ local heat_exchanger2_recipe = {
 }
 
 data:extend{heat_exchanger2_item, heat_exchanger2, heat_exchanger2_recipe}
+
+local stone_to_coal_recipe = {
+    type = "recipe",
+    name = "stone-to-coal",
+    ingredients = {{"stone", 10}},
+    result = "coal",
+    enabled = false,
+    energy_required = 1,
+    category = "advanced-crafting",
+    icon_size = 64,
+    icon = "__danger_ore_extra__/graphics/stone-to-coal.png"
+}
+
+local stone_to_coal_tech = {
+    type = "technology",
+    name = "stone-to-coal",
+    icon_size = 64,
+    icon = "__danger_ore_extra__/graphics/stone-to-coal.png",
+    prerequisites = {},
+    effects = {{type = "unlock-recipe", recipe = "stone-to-coal"}},
+    unit = {count = 50, ingredients = {{"automation-science-pack", 1}}, time = 15},
+    order = "d-a"
+}
+
+data:extend{stone_to_coal_recipe, stone_to_coal_tech}
+
+local stone_to_uranium_recipe = {
+    type = "recipe",
+    name = "stone-to-uranium",
+    ingredients = {{"stone", 20}},
+    result = "uranium-ore",
+    enabled = false,
+    energy_required = 1,
+    category = "advanced-crafting",
+    icon_size = 64,
+    icon = "__danger_ore_extra__/graphics/stone-to-uranium.png"
+}
+
+local stone_to_uranium_tech = {
+    type = "technology",
+    name = "stone-to-uranium",
+    icon_size = 64,
+    icon = "__danger_ore_extra__/graphics/stone-to-uranium.png",
+    prerequisites = {"stone-to-coal", "uranium-processing"},
+    effects = {{type = "unlock-recipe", recipe = "stone-to-uranium"}},
+    unit = {
+        count = 200,
+        ingredients = {{"automation-science-pack", 1}, {"logistic-science-pack", 1}, {"chemical-science-pack", 1}},
+        time = 30
+    },
+    order = "d-a"
+}
+
+data:extend{stone_to_uranium_recipe, stone_to_uranium_tech}
