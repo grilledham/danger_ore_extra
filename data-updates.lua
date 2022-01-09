@@ -1,7 +1,7 @@
 local deadlock = _G.deadlock
 
 local ore_stack_size = settings.startup["danger_ore_extra:ore_stack_size"].value
-for _, resource_name in pairs({"iron-ore", "copper-ore", "coal", "stone", "uranium-ore"}) do
+for _, resource_name in pairs({"iron-ore", "copper-ore"}) do
     data.raw["item"][resource_name].stack_size = ore_stack_size
 end
 
