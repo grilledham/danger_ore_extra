@@ -131,3 +131,35 @@ for level = 1, 7 do
 
     ::continue::
 end
+
+local oil_processing = data.raw["technology"]["oil-processing"]
+local oil_processing_effects = oil_processing.effects
+oil_processing_effects[#oil_processing_effects + 1] = {type = "unlock-recipe", recipe = "solid-fuel-from-heavy-oil"}
+oil_processing_effects[#oil_processing_effects + 1] = {type = "unlock-recipe", recipe = "solid-fuel-from-light-oil"}
+oil_processing_effects[#oil_processing_effects + 1] = {type = "unlock-recipe", recipe = "coal-liquefaction"}
+
+local adv_oil_processing = data.raw["technology"]["advanced-oil-processing"]
+adv_oil_processing.unit.count = 25
+
+data.raw["technology"]["coal-liquefaction"].enabled = false
+
+local coal_liquefaction = data.raw["recipe"]["coal-liquefaction"]
+coal_liquefaction.ingredients = {
+    {type = "item", name = "coal", amount = 10},
+    {type = "fluid", name = "steam", amount = 50}
+}
+coal_liquefaction.results = {
+    {type = "fluid", name = "heavy-oil", amount = 65},
+    {type = "fluid", name = "light-oil", amount = 20},
+    {type = "fluid", name = "petroleum-gas", amount = 10}
+}
+
+local uranium_processing = data.raw["technology"]["uranium-processing"]
+local uranium_processing_effects = uranium_processing.effects
+uranium_processing_effects[#uranium_processing_effects + 1] = {type = "unlock-recipe", recipe = "stone-to-uranium"}
+
+for _, name in pairs({"productivity-module", "productivity-module-2", "productivity-module-3"}) do
+    local module = data.raw["module"][name]
+    local limitation = module.limitation
+    limitation[#limitation + 1] = "stone-to-uranium"
+end
