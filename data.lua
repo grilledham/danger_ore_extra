@@ -564,3 +564,66 @@ local stone_to_uranium_recipe = {
 }
 
 data:extend{stone_to_uranium_recipe}
+
+local inserter_capacity_bonus_8 = table.deepcopy(data.raw["technology"]["inserter-capacity-bonus-7"])
+inserter_capacity_bonus_8.name = "inserter-capacity-bonus-8"
+inserter_capacity_bonus_8.unit = {
+    count = nil,
+    count_formula = "2^(L-7)*600",
+    ingredients =
+    {
+      {"automation-science-pack", 1},
+      {"logistic-science-pack", 1},
+      {"chemical-science-pack", 1},
+      {"production-science-pack", 1},
+      {"utility-science-pack", 1},
+      {"space-science-pack", 1}
+    },
+    time = 30
+  }
+inserter_capacity_bonus_8.max_level = "infinite"
+inserter_capacity_bonus_8.prerequisites = {"inserter-capacity-bonus-7", "space-science-pack"}
+
+data:extend{inserter_capacity_bonus_8}
+
+local worker_robots_storage_4 = table.deepcopy(data.raw["technology"]["worker-robots-storage-3"])
+worker_robots_storage_4.name = "worker-robots-storage-4"
+worker_robots_storage_4.unit = {
+    count = nil,
+    count_formula = "2^(L-3)*450",
+    ingredients =
+    {
+      {"automation-science-pack", 1},
+      {"logistic-science-pack", 1},
+      {"chemical-science-pack", 1},
+      {"production-science-pack", 1},
+      {"utility-science-pack", 1},
+      {"space-science-pack", 1}
+    },
+    time = 60
+  }
+  worker_robots_storage_4.max_level = "infinite"
+  worker_robots_storage_4.prerequisites = {"worker-robots-storage-3", "space-science-pack"}
+
+data:extend{worker_robots_storage_4}
+
+local braking_force_8 = table.deepcopy(data.raw["technology"]["braking-force-7"])
+braking_force_8.name = "braking-force-8"
+braking_force_8.unit = {
+    count = nil,
+    count_formula = "2^(L-7)*650",
+    ingredients =
+    {
+      {"automation-science-pack", 1},
+      {"logistic-science-pack", 1},
+      {"chemical-science-pack", 1},
+      {"production-science-pack", 1},
+      {"utility-science-pack", 1},
+      {"space-science-pack", 1}
+    },
+    time = 60
+  }
+  braking_force_8.max_level = "infinite"
+  braking_force_8.prerequisites = {"braking-force-7", "space-science-pack"}
+
+data:extend{braking_force_8}
