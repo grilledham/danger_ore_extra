@@ -117,7 +117,7 @@ data.raw["reactor"]["nuclear-reactor"].fast_replaceable_group = "nuclear-reactor
 data.raw["furnace"]["electric-furnace"].next_upgrade = "electric-furnace-2"
 data.raw["furnace"]["electric-furnace"].fast_replaceable_group = "electric-furnace"
 
-for level = 1, 7 do
+for level = 1, 8 do
     local tech = data.raw["technology"]["inserter-capacity-bonus-" .. level]
     if not tech then
         goto continue
