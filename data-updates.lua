@@ -38,6 +38,28 @@ if deadlock then
 
     data.raw["loader-1x1"]["express-transport-belt-loader"].speed = 0.125
     data.raw["furnace"]["express-transport-belt-beltbox"].crafting_speed = 0.125 * 32
+
+    local stack_size = settings.startup["deadlock-stack-size"].value
+
+    local stacked_iron_plate = {
+        type = "recipe",
+        name = "stacked-iron-plate",
+        category = "smelting",
+        energy_required = 3.2 * stack_size,
+        ingredients = {{"deadlock-stack-iron-ore", 1}},
+        result = "deadlock-stack-iron-plate"
+    }
+
+    local stacked_copper_plate = {
+        type = "recipe",
+        name = "stacked-copper-plate",
+        category = "smelting",
+        energy_required = 3.2 * stack_size,
+        ingredients = {{"deadlock-stack-copper-ore", 1}},
+        result = "deadlock-stack-copper-plate"
+    }
+
+    data:extend{stacked_iron_plate, stacked_copper_plate}
 end
 
 local cargo_wagon = data.raw['cargo-wagon']['cargo-wagon']
