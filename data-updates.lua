@@ -59,7 +59,25 @@ if deadlock then
         result = "deadlock-stack-copper-plate"
     }
 
-    data:extend{stacked_iron_plate, stacked_copper_plate}
+    local stacked_recipes = {stacked_iron_plate, stacked_copper_plate}
+    data:extend(stacked_recipes)
+
+    for _, module in pairs(data.raw["module"]) do
+        if module.category ~= "productivity" then
+            goto continue
+        end
+
+        local limiation = module.limitation
+        if not limiation then
+            goto continue
+        end
+
+        for _, recipe in pairs(stacked_recipes) do
+            table.insert(limiation, recipe.name)
+        end
+
+        ::continue::
+    end
 end
 
 local cargo_wagon = data.raw['cargo-wagon']['cargo-wagon']
